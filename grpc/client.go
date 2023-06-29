@@ -18,3 +18,21 @@ func Client(address string) (lib.PingPongClient, error) {
 
 	return client, nil
 }
+
+func SecureClient(tlsFiles CertManager, address string, verify bool) (lib.PingPongClient, error) {
+	creds, err := Credentials(tlsFiles, verify)
+	if err != nil {
+		return nil, err
+	}
+
+	// Dial the gRPC server with TLS credentials
+	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(creds))
+	if err != nil {
+		return nil, err
+	}
+
+	// Create a new ping pong client instance
+	client := lib.NewPingPongClient(conn)
+
+	return client, nil
+}
