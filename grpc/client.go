@@ -6,20 +6,21 @@ import (
 	grpcInsecure "google.golang.org/grpc/credentials/insecure"
 )
 
-func Client(address string) (lib.PingPongClient, error) {
+func Connect(address string) (*grpc.ClientConn, error) {
 	// Create a new gRPC client connection
 	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(grpcInsecure.NewCredentials()))
 	if err != nil {
 		return nil, err
 	}
 
-	// Create a new ping pong client instance
-	client := lib.NewPingPongClient(conn)
-
-	return client, nil
+	return conn, nil
 }
 
-func SecureClient(tlsFiles CertManager, address string, verify bool) (lib.PingPongClient, error) {
+func Client(conn *grpc.ClientConn) lib.PingPongClient {
+	return lib.NewPingPongClient(conn)
+}
+
+func SecureConnect(tlsFiles CertManager, address string, verify bool) (*grpc.ClientConn, error) {
 	creds, err := Credentials(tlsFiles, verify)
 	if err != nil {
 		return nil, err
@@ -31,8 +32,5 @@ func SecureClient(tlsFiles CertManager, address string, verify bool) (lib.PingPo
 		return nil, err
 	}
 
-	// Create a new ping pong client instance
-	client := lib.NewPingPongClient(conn)
-
-	return client, nil
+	return conn, nil
 }

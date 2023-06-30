@@ -17,6 +17,10 @@ func NewServer() *grpc.Server {
 	return srv
 }
 
+func GracefulStop(srv *grpc.Server) {
+	srv.GracefulStop()
+}
+
 func NewSecureServer(tlsFiles CertManager, verify bool) (*grpc.Server, error) {
 	creds, err := Credentials(tlsFiles, verify)
 	if err != nil {
@@ -57,7 +61,7 @@ func StartSecureServer(tlsFiles CertManager, address string, verify bool) error 
 		return err
 	}
 
-	logger.Printf("[pulsatio] gRPC server is using tls files: %s, %s, %s", tlsFiles.CertFile, tlsFiles.KeyFile, tlsFiles.CAFile)
+	logger.Printf("gRPC server is using tls files: %s, %s, %s", tlsFiles.CertFile, tlsFiles.KeyFile, tlsFiles.CAFile)
 
 	// Create a TCP listener
 	listener, err := net.Listen("tcp", address)
@@ -66,9 +70,9 @@ func StartSecureServer(tlsFiles CertManager, address string, verify bool) error 
 	}
 
 	if verify {
-		logger.Printf("[pulsatio] gRPC server is using tls verification")
+		logger.Printf("gRPC server is using tls verification")
 	} else {
-		logger.Printf("[pulsatio] gRPC server is not using tls verification")
+		logger.Printf("gRPC server is not using tls verification")
 	}
 
 	// Register the server
