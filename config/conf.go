@@ -5,6 +5,6 @@ var (
 	Usage   = "pulsatio is a simple gRPC based terminal application."
 	Version = "0.0.1"
 
-	// Immutable variables
+	// Mutable variables
 	ServerTimeout = 13 * 1000
 )
