@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        v4.23.3
-// source: ping.proto
+// source: pulsatio.proto
 
 package lib
 
@@ -31,7 +31,7 @@ type PingMessage struct {
 func (x *PingMessage) Reset() {
 	*x = PingMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ping_proto_msgTypes[0]
+		mi := &file_pulsatio_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +44,7 @@ func (x *PingMessage) String() string {
 func (*PingMessage) ProtoMessage() {}
 
 func (x *PingMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_ping_proto_msgTypes[0]
+	mi := &file_pulsatio_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *PingMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingMessage.ProtoReflect.Descriptor instead.
 func (*PingMessage) Descriptor() ([]byte, []int) {
-	return file_ping_proto_rawDescGZIP(), []int{0}
+	return file_pulsatio_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PingMessage) GetMessage() string {
@@ -78,7 +78,7 @@ type PongMessage struct {
 func (x *PongMessage) Reset() {
 	*x = PongMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ping_proto_msgTypes[1]
+		mi := &file_pulsatio_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +91,7 @@ func (x *PongMessage) String() string {
 func (*PongMessage) ProtoMessage() {}
 
 func (x *PongMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_ping_proto_msgTypes[1]
+	mi := &file_pulsatio_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +104,7 @@ func (x *PongMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PongMessage.ProtoReflect.Descriptor instead.
 func (*PongMessage) Descriptor() ([]byte, []int) {
-	return file_ping_proto_rawDescGZIP(), []int{1}
+	return file_pulsatio_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PongMessage) GetMessage() string {
@@ -114,43 +114,44 @@ func (x *PongMessage) GetMessage() string {
 	return ""
 }
 
-var File_ping_proto protoreflect.FileDescriptor
+var File_pulsatio_proto protoreflect.FileDescriptor
 
-var file_ping_proto_rawDesc = []byte{
-	0x0a, 0x0a, 0x70, 0x69, 0x6e, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x70, 0x69,
-	0x6e, 0x67, 0x22, 0x27, 0x0a, 0x0b, 0x50, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x27, 0x0a, 0x0b, 0x50,
-	0x6f, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73,
-	0x73, 0x61, 0x67, 0x65, 0x32, 0x3a, 0x0a, 0x08, 0x50, 0x69, 0x6e, 0x67, 0x50, 0x6f, 0x6e, 0x67,
-	0x12, 0x2e, 0x0a, 0x04, 0x50, 0x69, 0x6e, 0x67, 0x12, 0x11, 0x2e, 0x70, 0x69, 0x6e, 0x67, 0x2e,
-	0x50, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x11, 0x2e, 0x70, 0x69,
-	0x6e, 0x67, 0x2e, 0x50, 0x6f, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00,
+var file_pulsatio_proto_rawDesc = []byte{
+	0x0a, 0x0e, 0x70, 0x75, 0x6c, 0x73, 0x61, 0x74, 0x69, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x12, 0x08, 0x70, 0x75, 0x6c, 0x73, 0x61, 0x74, 0x69, 0x6f, 0x22, 0x27, 0x0a, 0x0b, 0x50, 0x69,
+	0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x22, 0x27, 0x0a, 0x0b, 0x50, 0x6f, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x42, 0x0a, 0x08,
+	0x50, 0x69, 0x6e, 0x67, 0x50, 0x6f, 0x6e, 0x67, 0x12, 0x36, 0x0a, 0x04, 0x50, 0x69, 0x6e, 0x67,
+	0x12, 0x15, 0x2e, 0x70, 0x75, 0x6c, 0x73, 0x61, 0x74, 0x69, 0x6f, 0x2e, 0x50, 0x69, 0x6e, 0x67,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x15, 0x2e, 0x70, 0x75, 0x6c, 0x73, 0x61, 0x74,
+	0x69, 0x6f, 0x2e, 0x50, 0x6f, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00,
 	0x42, 0x07, 0x5a, 0x05, 0x2e, 0x2f, 0x6c, 0x69, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x33,
 }
 
 var (
-	file_ping_proto_rawDescOnce sync.Once
-	file_ping_proto_rawDescData = file_ping_proto_rawDesc
+	file_pulsatio_proto_rawDescOnce sync.Once
+	file_pulsatio_proto_rawDescData = file_pulsatio_proto_rawDesc
 )
 
-func file_ping_proto_rawDescGZIP() []byte {
-	file_ping_proto_rawDescOnce.Do(func() {
-		file_ping_proto_rawDescData = protoimpl.X.CompressGZIP(file_ping_proto_rawDescData)
+func file_pulsatio_proto_rawDescGZIP() []byte {
+	file_pulsatio_proto_rawDescOnce.Do(func() {
+		file_pulsatio_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulsatio_proto_rawDescData)
 	})
-	return file_ping_proto_rawDescData
+	return file_pulsatio_proto_rawDescData
 }
 
-var file_ping_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_ping_proto_goTypes = []interface{}{
-	(*PingMessage)(nil), // 0: ping.PingMessage
-	(*PongMessage)(nil), // 1: ping.PongMessage
+var file_pulsatio_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_pulsatio_proto_goTypes = []interface{}{
+	(*PingMessage)(nil), // 0: pulsatio.PingMessage
+	(*PongMessage)(nil), // 1: pulsatio.PongMessage
 }
-var file_ping_proto_depIdxs = []int32{
-	0, // 0: ping.PingPong.Ping:input_type -> ping.PingMessage
-	1, // 1: ping.PingPong.Ping:output_type -> ping.PongMessage
+var file_pulsatio_proto_depIdxs = []int32{
+	0, // 0: pulsatio.PingPong.Ping:input_type -> pulsatio.PingMessage
+	1, // 1: pulsatio.PingPong.Ping:output_type -> pulsatio.PongMessage
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -158,13 +159,13 @@ var file_ping_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_ping_proto_init() }
-func file_ping_proto_init() {
-	if File_ping_proto != nil {
+func init() { file_pulsatio_proto_init() }
+func file_pulsatio_proto_init() {
+	if File_pulsatio_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_ping_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_pulsatio_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PingMessage); i {
 			case 0:
 				return &v.state
@@ -176,7 +177,7 @@ func file_ping_proto_init() {
 				return nil
 			}
 		}
-		file_ping_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_pulsatio_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PongMessage); i {
 			case 0:
 				return &v.state
@@ -193,18 +194,18 @@ func file_ping_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_ping_proto_rawDesc,
+			RawDescriptor: file_pulsatio_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_ping_proto_goTypes,
-		DependencyIndexes: file_ping_proto_depIdxs,
-		MessageInfos:      file_ping_proto_msgTypes,
+		GoTypes:           file_pulsatio_proto_goTypes,
+		DependencyIndexes: file_pulsatio_proto_depIdxs,
+		MessageInfos:      file_pulsatio_proto_msgTypes,
 	}.Build()
-	File_ping_proto = out.File
-	file_ping_proto_rawDesc = nil
-	file_ping_proto_goTypes = nil
-	file_ping_proto_depIdxs = nil
+	File_pulsatio_proto = out.File
+	file_pulsatio_proto_rawDesc = nil
+	file_pulsatio_proto_goTypes = nil
+	file_pulsatio_proto_depIdxs = nil
 }

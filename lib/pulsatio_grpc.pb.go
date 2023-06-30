@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.23.3
-// source: ping.proto
+// source: pulsatio.proto
 
 package lib
 
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PingPong_Ping_FullMethodName = "/ping.PingPong/Ping"
+	PingPong_Ping_FullMethodName = "/pulsatio.PingPong/Ping"
 )
 
 // PingPongClient is the client API for PingPong service.
@@ -96,7 +96,7 @@ func _PingPong_Ping_Handler(srv interface{}, ctx context.Context, dec func(inter
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PingPong_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ping.PingPong",
+	ServiceName: "pulsatio.PingPong",
 	HandlerType: (*PingPongServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -105,5 +105,5 @@ var PingPong_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "ping.proto",
+	Metadata: "pulsatio.proto",
 }

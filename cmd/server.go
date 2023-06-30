@@ -3,7 +3,9 @@ package cmd
 import (
 	"errors"
 
+	config "github.com/eminmuhammadi/pulsatio/config"
 	grpc "github.com/eminmuhammadi/pulsatio/grpc"
+	logger "github.com/eminmuhammadi/pulsatio/logger"
 
 	cli "github.com/urfave/cli/v2"
 )
@@ -45,6 +47,10 @@ func ServerCMD() *cli.Command {
 				Name:     "secure",
 				Required: false,
 			},
+			&cli.IntFlag{
+				Name:     "timeout",
+				Required: false,
+			},
 		},
 		Action: func(ctx *cli.Context) error {
 			return serverFunc(ctx)
@@ -59,6 +65,13 @@ func serverFunc(ctx *cli.Context) error {
 	address := ctx.String("address")
 	tlsVerify := !ctx.Bool("insecure-tls-verify")
 	secure := ctx.Bool("secure")
+	timeout := ctx.Int("timeout")
+
+	if timeout > 0 {
+		config.ServerTimeout = timeout
+	}
+
+	logger.Printf("Timeout has been set to %d", config.ServerTimeout)
 
 	if secure {
 		tlsFiles := grpc.CertManager{

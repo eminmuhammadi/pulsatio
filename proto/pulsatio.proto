@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ping;
+package pulsatio;
 
 option go_package = "./lib";
 

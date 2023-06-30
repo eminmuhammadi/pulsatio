@@ -5,11 +5,12 @@ import (
 
 	grpc "github.com/eminmuhammadi/pulsatio/grpc"
 	lib "github.com/eminmuhammadi/pulsatio/lib"
+	"github.com/eminmuhammadi/pulsatio/terminal"
 
 	cli "github.com/urfave/cli/v2"
 )
 
-func SecureClient(tlsFiles grpc.CertManager, address string, verify bool) (*lib.PongMessage, error) {
+func SecureClient(msg string, tlsFiles grpc.CertManager, address string, verify bool) (*lib.PongMessage, error) {
 	conn, err := grpc.SecureConnect(tlsFiles, address, verify)
 	if err != nil {
 		panic(err)
@@ -19,10 +20,10 @@ func SecureClient(tlsFiles grpc.CertManager, address string, verify bool) (*lib.
 
 	client := grpc.Client(conn)
 
-	return grpc.Ping(client)
+	return grpc.Ping(client, msg)
 }
 
-func Client(address string) (*lib.PongMessage, error) {
+func Client(msg string, address string) (*lib.PongMessage, error) {
 	conn, err := grpc.Connect(address)
 	if err != nil {
 		panic(err)
@@ -32,7 +33,7 @@ func Client(address string) (*lib.PongMessage, error) {
 
 	client := grpc.Client(conn)
 
-	return grpc.Ping(client)
+	return grpc.Ping(client, msg)
 }
 
 func ClientCMD() *cli.Command {
@@ -66,12 +67,26 @@ func ClientCMD() *cli.Command {
 			},
 		},
 		Action: func(ctx *cli.Context) error {
-			return clientFunc(ctx)
+			for {
+				command := terminal.Stdin()
+
+				if command == "exit" {
+					break
+				}
+
+				clientFunc(ctx, command)
+			}
+
+			return nil
 		},
 	}
 }
 
-func clientFunc(ctx *cli.Context) error {
+func clientFunc(ctx *cli.Context, command string) error {
+	if command == "" {
+		return errors.New("command is required")
+	}
+
 	var err error
 	var msg *lib.PongMessage
 
@@ -81,7 +96,6 @@ func clientFunc(ctx *cli.Context) error {
 	address := ctx.String("address")
 	tlsVerify := !ctx.Bool("insecure-tls-verify")
 	secure := ctx.Bool("secure")
-
 	if secure {
 		tlsFiles := grpc.CertManager{
 			CertFile: cert,
@@ -93,13 +107,13 @@ func clientFunc(ctx *cli.Context) error {
 			return errors.New("cert, key and ca files are required for secure connection")
 		}
 
-		msg, err = SecureClient(tlsFiles, address, tlsVerify)
+		msg, err = SecureClient(command, tlsFiles, address, tlsVerify)
 	} else {
-		msg, err = Client(address)
+		msg, err = Client(command, address)
 	}
 
 	if err == nil {
-		println(msg.Message)
+		print(msg.Message)
 	}
 
 	return err

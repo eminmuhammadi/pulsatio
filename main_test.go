@@ -9,6 +9,7 @@ import (
 )
 
 const tlsVerify = false
+const command = "ls -la"
 
 var port = 32000
 
@@ -30,7 +31,7 @@ func TestSecure(t *testing.T) {
 
 	go cmd.SecureServer(serverCerts, address, tlsVerify)
 
-	_, err := cmd.SecureClient(clientCerts, address, tlsVerify)
+	_, err := cmd.SecureClient(command, clientCerts, address, tlsVerify)
 
 	if err != nil {
 		t.Errorf("Secure test failed: %s", err)
@@ -42,7 +43,7 @@ func TestInsecure(t *testing.T) {
 	address := fmt.Sprintf("localhost:%d", port)
 
 	go cmd.Server(address)
-	_, err := cmd.Client(address)
+	_, err := cmd.Client(command, address)
 
 	if err != nil {
 		t.Errorf("Insecure test failed: %s", err)
@@ -54,7 +55,7 @@ func TestSecureServerInsecureClient(t *testing.T) {
 	address := fmt.Sprintf("localhost:%d", port)
 
 	go cmd.SecureServer(serverCerts, address, tlsVerify)
-	_, err := cmd.Client(address)
+	_, err := cmd.Client(command, address)
 
 	if err == nil {
 		t.Errorf("SecureServerInsecureClient test failed: %s", err)
@@ -66,7 +67,7 @@ func TestInsecureServerSecureClient(t *testing.T) {
 	address := fmt.Sprintf("localhost:%d", port)
 
 	go cmd.Server(address)
-	_, err := cmd.SecureClient(clientCerts, address, tlsVerify)
+	_, err := cmd.SecureClient(command, clientCerts, address, tlsVerify)
 
 	if err == nil {
 		t.Errorf("InsecureServerSecureClient test failed: %s", err)
@@ -79,7 +80,7 @@ func BenchmarkInsecure(b *testing.B) {
 
 	go cmd.Server(address)
 	for i := 0; i < b.N; i++ {
-		_, err := cmd.Client(address)
+		_, err := cmd.Client(command, address)
 
 		if err != nil {
 			b.Errorf("Insecure test failed: %s", err)
@@ -93,7 +94,7 @@ func BenchmarkSecure(b *testing.B) {
 
 	go cmd.SecureServer(serverCerts, address, tlsVerify)
 	for i := 0; i < b.N; i++ {
-		_, err := cmd.SecureClient(clientCerts, address, tlsVerify)
+		_, err := cmd.SecureClient(command, clientCerts, address, tlsVerify)
 
 		if err != nil {
 			b.Errorf("Secure test failed: %s", err)

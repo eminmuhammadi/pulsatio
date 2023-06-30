@@ -8,10 +8,6 @@ import (
 	grpc "google.golang.org/grpc"
 )
 
-type server struct {
-	lib.UnimplementedPingPongServer
-}
-
 func NewServer() *grpc.Server {
 	srv := grpc.NewServer()
 	return srv
