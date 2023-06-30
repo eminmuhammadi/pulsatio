@@ -1,10 +1,11 @@
 package config
 
-var (
-	Name    = "pulsatio"
-	Usage   = "pulsatio is a simple gRPC based terminal application."
-	Version = "0.0.1"
+// Constants
+const Name = "pulsatio"
+const Usage = "pulsatio is a simple gRPC based remote terminal application."
 
-	// Mutable variables
+// Mutable variables
+var (
+	Version       = "0.0.1"
 	ServerTimeout = 13 * 1000
 )
